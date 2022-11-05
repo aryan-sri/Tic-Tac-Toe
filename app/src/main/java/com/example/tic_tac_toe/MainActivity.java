@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-//    int x=0;
-//    int o = 0;
+    private int x=0;
+    private int o = 0;
     TextView player1;
     TextView player2;
     Boolean gameActive = true;
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                status = findViewById(R.id.status);
                 status.setText("O's Turn : Tap to Play!");
 
+
             }
             else
             {
@@ -53,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(int[] winPosition: winPositions)
         {
-//            player1 = findViewById(R.id.player1);
-//            player2 = findViewById(R.id.player2);
+
 
             if(gameState[winPosition[0]] == gameState[winPosition[1]] &&
                     gameState[winPosition[1]] == gameState[winPosition[2]] &&
@@ -64,14 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 gameActive = false;
                 if(gameState[winPosition[0]] == 0){
                     winnerStr = "X has won";
-//                    x++;
-//                    player1.setText(x);
+                    x++;
+
 
                 }
                 else{
                     winnerStr = "O has won";
-//                    o++;
-//                    player2.setText(o);
+                    o++;
+
                 }
                 Toast.makeText(this, winnerStr, Toast.LENGTH_SHORT).show();
                 status.setText(winnerStr);
@@ -85,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void gameReset(View view) {
         gameActive = true;
+        player1 = findViewById(R.id.player1);
+        player2 = findViewById(R.id.player2);
         activePlayer = 0;
         for(int i=0; i<gameState.length; i++){
             gameState[i] = 2;
@@ -101,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
 
         status = findViewById(R.id.status);
         status.setText("X's Turn - Tap to play");
+        String s = "" + x;
+        String s2 = "" + o;
+        player1.setText("Player X : "+s);
+        player2.setText("Player O : "+o);
+
     }
 
     @Override
